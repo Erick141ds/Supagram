@@ -102,7 +102,7 @@ export default function Home() {
         .select('*')
         //.gte('likes', 50)
         //.range(0, 12)
-        .order('likes', {ascending: false})
+        .order('created_at', {ascending: false})
         //.range(0,11)
         
   
@@ -134,7 +134,7 @@ export default function Home() {
       <header className="sticky top-0 z-50 bg-card-bg border-b border-border">
         <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-center">
           <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            💕Sunshime Boy 💕 
+            💕Sunshine Boy 💕 
           </h1>
         </div>
       </header>
