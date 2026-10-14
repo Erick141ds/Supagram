@@ -1,9 +1,21 @@
 import Image from "next/image";
-import { Post } from "../mocks/posts";
 import { getTimeAgo } from "../utils/time";
 import HeartIcon from "./HeartIcon";
+import { Post } from "../types";
 
-export function Modal({ post, onClose }: { post: Post; onClose: () => void }) {
+export default function Modal({
+  post,
+  onClose,
+}: {
+  post: Post;
+  onClose: () => void;
+}) {
+
+  const username = post.profile?.username || 'default user';
+  const avatarUrl = post.profile?.avatar_url || "/th.webp";
+
+  console.log(avatarUrl)
+  
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
@@ -39,19 +51,15 @@ export function Modal({ post, onClose }: { post: Post; onClose: () => void }) {
         <div className="flex items-center gap-3 p-4 border-b border-border">
           <div className="relative w-10 h-10 rounded-full overflow-hidden ring-2 ring-primary">
             <Image
-              src={post.user?.avatar || 'https://jqnxhcsbzlnuofzuocmc.supabase.co/storage/v1/object/public/Supagram/profiles/3e2a2574d0a6746494d8cb2be83e6b59.jpg'}
-              alt={post.user?.username || 'default user'}
+              src={avatarUrl}
+              alt={username}
               fill
               className="object-cover"
             />
           </div>
           <div className="flex flex-col">
-            <span className="font-semibold text-foreground">
-              {post.user?.username}
-            </span>
-            <span className="text-xs text-foreground/50">
-              {getTimeAgo(new Date (post.created_at))}
-            </span>
+            <span className="font-semibold text-foreground">@{username}</span>
+            <span className="text-xs text-foreground/50">{getTimeAgo(new Date(post.created_at))}</span>
           </div>
         </div>
 
@@ -59,7 +67,7 @@ export function Modal({ post, onClose }: { post: Post; onClose: () => void }) {
         <div className="relative w-full aspect-square">
           <Image
             src={post.image_url}
-            alt={`Post de ${post.user?.username}`}
+            alt={`Post de ${username}`}
             fill
             className="object-cover"
           />
@@ -74,7 +82,7 @@ export function Modal({ post, onClose }: { post: Post; onClose: () => void }) {
             </span>
           </div>
           <p className="mt-2 text-foreground">
-            <span className="font-semibold">{post.user?.username || 'default user'}</span>{" "}
+            <span className="font-semibold">{username}</span>{" "}
             <span className="text-foreground/80">{post.caption}</span>
           </p>
         </div>
