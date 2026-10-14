@@ -156,7 +156,7 @@ export default function EditProfilePage() {
         const filePath = `profile/${fileName}`;
 
         const { error: uploadError } = await supabase.storage
-          .from("supagram")
+          .from("Supagram")
           .upload(filePath, avatarFile, {
             cacheControl: "3600",
             upsert: true,
@@ -165,7 +165,7 @@ export default function EditProfilePage() {
         if (uploadError) throw uploadError;
 
         const { data: urlData } = supabase.storage
-          .from("supagram")
+          .from("Supagram")
           .getPublicUrl(filePath);
 
         avatarUrl = urlData.publicUrl;

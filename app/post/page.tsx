@@ -63,7 +63,7 @@ export default function CreatePage() {
 
     // 2️⃣ Subir al bucket "supagram"
     const { data: uploadData, error: uploadError } = await supabase.storage
-      .from("supagram")
+      .from("Supagram")
       .upload(filePath, file, {
         cacheControl: "3600",
         upsert: false,
@@ -76,7 +76,7 @@ export default function CreatePage() {
 
     // 3️⃣ Obtener URL pública
     const { data: urlData } = supabase.storage
-      .from("supagram")
+      .from("Supagram")
       .getPublicUrl(filePath);
 
     const publicUrl = urlData.publicUrl;
